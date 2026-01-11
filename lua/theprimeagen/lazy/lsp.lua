@@ -54,6 +54,21 @@ return {
                     }
                 end,
 
+                ["rust_analyzer"] = function()
+                    require("lspconfig").rust_analyzer.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            ['rust-analyzer'] = {
+                                procMacro = {
+                                    enable = true,
+                                },
+                                checkOnSave = {
+                                    command = "clippy"
+                                },
+                            }
+                        }
+                    }
+                end,
                 zls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
